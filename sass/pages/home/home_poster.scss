@@ -1,0 +1,51 @@
+@import "../../variables.scss";
+
+.home__poster {
+    position: relative;
+    height: 20rem;
+    padding: 3rem var(--padding) 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url(/img/poster.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    @media screen and (min-width: 768px) {
+        height: 25rem;
+    }
+    @media screen and (min-width: 1024px) {
+        height: 30rem;
+    }
+    @media screen and (min-width: 1200px) {
+        height: 100vh;
+    }
+    .home__poster__title {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #fff;
+        font-weight: 500;
+        font-size: $title;
+    }
+    .home__poster__text {
+        margin-bottom: 2rem;
+        width: 100%;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+        color: #fff;
+        font-size: $normal;
+    }
+    .home__poster__button {
+        width: max-content;
+        padding: .8rem;
+        border: 1px solid #ccc;
+        border-radius: 2rem;
+        color: #fff;
+        cursor: pointer;
+        &:hover {
+            background: $background-2-color;
+        }
+    }
+}

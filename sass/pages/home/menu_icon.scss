@@ -1,0 +1,25 @@
+@import "../../variables.scss";
+
+.menu__icon__container {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+    @media screen and (min-width: 768px) {
+        display: none;
+    }
+    .menu__icon {
+        width: 1.2rem;
+        height: 100%;
+        cursor: pointer;
+        background-image: linear-gradient(
+            var(--text-1) 10%,
+            transparent 10%,
+            transparent 45%,
+            var(--text-1) 45%,
+            var(--text-1) 55%,
+            transparent 55%,
+            transparent 90%,
+            var(--text-1) 90%
+        );
+    }
+}

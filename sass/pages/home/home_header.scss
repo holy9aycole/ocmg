@@ -1,0 +1,51 @@
+@import "../../variables.scss";
+@import "./menu_icon.scss";
+@import "./home_header_nav.scss";
+
+.home__header {
+    position: fixed;
+    z-index: 1000000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3rem;
+    padding: 1rem var(--padding);
+    display: flex;
+    background: var(--background-1);
+    transition: background .1s ease-in;
+    &.active {
+        box-shadow: 0 1px 10px 0 rgba(#000, .2);
+    }
+    &.darken {
+        --background-1: #000000d5;
+        --text-1: #ddd;
+        &.active {
+            box-shadow: 0 1px 10px 0 rgba(#ddd, .2);
+        }
+    }
+    .home__header__logo {
+        align-self: center;
+        font-size: $logo;
+        color: var(--text-1);
+        font-weight: 400;
+    }
+    .home__header__theme {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        .header__theme__icon {
+            padding: 1rem;
+            color: var(--text-1);
+            font-size: $subtitle;
+            cursor: pointer;
+            &:hover {
+                box-shadow: 0 -2px var(--text-1) inset;
+            }
+        }
+    }
+    &.darken {
+        .home__header__nav .home__header__link .header__link__list {
+            box-shadow: 0 0 10px 1px rgba(#ddd, .2);
+        }
+    }
+}

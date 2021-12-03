@@ -1,0 +1,40 @@
+:root {
+    --padding: 1rem;
+    /* Color de fondo de la pagina */
+    --background-0: #fff;
+    /* Color del Header */
+    --background-1: #fff;
+    // --background-1: #000000d5;
+    /* Color de texto en el Header y el Poster */
+    // --text-1: #ddd;
+    --text-1: #636d65ff;
+    /* Color de texto en el Main */
+    --text-2: #000000e0;
+    @media screen and (min-width: 768px) {
+        --padding: 5rem;
+    }
+    @media screen and (min-width: 1024px) {
+        --padding: 10rem;
+    }
+    @media screen and (min-width: 1200px) {
+        --padding: 20rem;
+    }
+}
+
+/* Color de fondo */
+$background-1-color: #fff;
+$background-2-color: #245b5bff;
+
+/* Color de texto */
+$text-1-color: darken(#aaa, 50);
+
+/* Tamaño de texto */
+$logo: 1.3rem;
+$title: 1.3rem;
+$subtitle: 1.1rem;
+$normal: 1rem;
+$info2: .95rem;
+$info: .92rem;
+
+/* Colores varios */
+$menu: lighten(#000, 25);
