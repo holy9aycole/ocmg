@@ -19,52 +19,46 @@
             background: var(--text-1);
         }
     }
-    .home__main__service {
-        .main__service__title {
-            padding: .5rem var(--padding);
-            font-weight: 500;
-            font-size: $subtitle;
-            text-align: center;
-            color: var(--text-2);
+}
+
+/* Estilos compartidos con la pagina de Servicios */
+.home__main__service {
+    .main__service__title {
+        padding: .5rem var(--padding);
+        font-weight: 500;
+        font-size: $subtitle;
+        text-align: center;
+        color: var(--text-2);
+    }
+    .main__service__item {
+        margin-bottom: 2rem;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        @media screen and (min-width: 768px) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            grid-gap: .1rem 2rem;
+            padding: 0 var(--padding);
         }
-        .main__service__item {
-            margin-bottom: 2rem;
+        .main__service__text {
+            padding: .5rem var(--padding);
             display: flex;
-            flex-direction: column;
-            overflow: hidden;
+            align-items: center;
+            text-align: center;
+            font-size: $info;
+            color: var(--text-2);
+            line-height: 1.2;
             @media screen and (min-width: 768px) {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: auto auto;
-                grid-gap: .1rem 2rem;
-                padding: 0 var(--padding);
-            }
-            .main__service__text {
-                padding: .5rem var(--padding);
-                display: flex;
-                align-items: center;
-                text-align: center;
-                font-size: $info;
-                color: var(--text-2);
-                line-height: 1.2;
-                @media screen and (min-width: 768px) {
-                    padding: .5rem;
-                    text-align: initial;
-                    font-size: $normal;
-                }
-            }
-            .main__service__img {
-                margin: .5rem 0;
-                height: 15rem;
-            }
-            .main__service__link {
-                border: 1px solid $background-2-color;
-                border-radius: .2rem;
                 padding: .5rem;
-                font-size: $info;
-                background: $background-2-color;
-                color: #fff;
+                text-align: initial;
+                font-size: $normal;
             }
+        }
+        .main__service__img {
+            margin: .5rem 0;
+            height: 15rem;
         }
     }
 }

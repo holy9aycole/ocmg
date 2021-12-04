@@ -1,0 +1,29 @@
+@import "../../variables.scss";
+
+.service__main {
+    padding: 2.5rem var(--padding);
+    display: flex;
+    flex-direction: column;
+    .service__main__title {
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+        font-size: $title;
+        text-align: center;
+        color: var(--text-2);
+    }
+    .service__main__container {
+        .service__main__item {
+            @media screen and (min-width: 768px) {
+                /* Anulamos el padding en los lados impuesto desde el Home */
+                padding: 0;
+            }
+            .service__main__text {
+                padding: .5rem 0;
+                font-size: $info2;
+            }
+        }
+    }
+    .home__poster__button {
+        margin: 0 auto;
+    }
+}

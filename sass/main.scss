@@ -1,5 +1,8 @@
 @import "./variables.scss";
+@import "./shared.scss";
 @import "./pages/home/home.scss";
+@import "./pages/service/service.scss";
+@import "./pages/about_us/about_us.scss";
 
 * {
     margin: 0;
@@ -21,10 +24,11 @@ body {
     flex-direction: column;
     min-height: 100vh;
     background: var(--background-0);
+    transition: background .25s;
     /* Temas: */
     &.darken {
         /* Tema oscuro */
-        --background-0: #000000d5;
+        --background-0: #3a3a3aff;
         --text-2: #ddd;
     }
     & > footer {

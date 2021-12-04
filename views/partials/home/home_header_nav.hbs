@@ -1,6 +1,8 @@
 <nav class="home__header__nav">
-    <a href="/#" class="home__header__link">Home</a>
-    <div class="home__header__link">
+    <a href="/#" class="home__header__link {{pathActive currentPath true '/'}}">
+        Inicio
+    </a>
+    <div class="home__header__link {{pathActive currentPath false '/servicio'}}">
         Servicios
         <ul class="header__link__list">
             <li class="header__link__item">
@@ -18,9 +20,12 @@
                 </a>
             </li>
             <li class="header__link__item">
-                <a href="/servicio/gestorias">Gestorías</a>
+                <a href="/servicio/gestoria">Gestorías</a>
             </li>
         </ul>
     </div>
-    <a href="/sobre-nosotros" class="home__header__link">Sobre nosotros</a>
+    <a href="/sobre-nosotros"
+       class="home__header__link {{pathActive currentPath false '/sobre-nosotros'}}">
+        Sobre nosotros
+    </a>
 </nav>

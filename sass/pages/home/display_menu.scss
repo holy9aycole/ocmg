@@ -47,6 +47,13 @@
                     padding: .5rem 0;
                     color: var(--text-2);
                     font-size: $subtitle;
+                    &.active {
+                        &::before {
+                            content: "|";
+                            margin-right: .5rem;
+                            color: var(--text-2);
+                        }
+                    }
                     .menu__link__list {
                         margin-left: 1rem;
                         margin-top: .3rem;
@@ -56,6 +63,13 @@
                             width: 100%;
                             padding: .3rem 0;
                             color: var(--text-2);
+                            &.active {
+                                &::before {
+                                    content: "|";
+                                    margin-right: .5rem;
+                                    color: var(--text-2);
+                                }
+                            }
                         }
                     }
                 }

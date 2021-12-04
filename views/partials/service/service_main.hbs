@@ -1,0 +1,14 @@
+<main class=" service__main">
+    <h2 class="service__main__title">{{title}}</h2>
+    <section class="home__main__service service__main__container">
+        {{#each contents}}
+        <article class="main__service__item service__main__item ">
+            <p class="main__service__text service__main__text slide-in {{textFrom}}"
+               >{{this.text}}</p>
+            <img class="main__service__img slide-in {{{this.imgFrom}}}"
+                 src="{{this.img}}" alt="">
+        </article>
+        {{/each}}
+    </section>
+    <a href="#" class="btn-1 home__poster__button">Contáctanos</a>
+</main>

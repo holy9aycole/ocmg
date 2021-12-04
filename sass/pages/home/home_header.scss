@@ -17,7 +17,7 @@
         box-shadow: 0 1px 10px 0 rgba(#000, .2);
     }
     &.darken {
-        --background-1: #000000d5;
+        --background-1: #3a3a3aff;
         --text-1: #ddd;
         &.active {
             box-shadow: 0 1px 10px 0 rgba(#ddd, .2);
@@ -25,9 +25,12 @@
     }
     .home__header__logo {
         align-self: center;
-        font-size: $logo;
-        color: var(--text-1);
         font-weight: 400;
+        a {
+            display: inline-block;
+            font-size: $logo;
+            color: var(--text-1);
+        }
     }
     .home__header__theme {
         margin-left: auto;

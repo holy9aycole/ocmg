@@ -1,0 +1,61 @@
+.service__poster {
+    position: relative;
+    height: 15rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @media screen and (min-width: 768px) {
+        height: 20rem;
+        margin: 0 var(--padding);
+    }
+    @media screen and (min-width: 1024px) {
+        height: 22rem;
+    }
+    .service__poster__btns {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 3rem 1rem 0;
+        background: rgba(#000, .25);
+        .icon {
+            cursor: pointer;
+            transition: background .15s ease-in, color .15s ease-in;
+            border-radius: .2rem;
+            &::before {
+                display: flex;
+                justify-content: center;
+            }
+            &:hover {
+                background: #eee;
+                color: #3a3a3aff;
+            }
+            &.disabled {
+                opacity: .6;
+                &:hover {
+                    background: transparent;
+                    color: #ddd;
+                }
+            }
+        }
+    }
+    .service__poster__list {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-auto-columns: 100%;
+        grid-auto-flow: column;
+        height: 100%;
+        overflow: hidden;
+        .service__poster__item {
+            transition: margin .35s ease-in;
+            width: 100%;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+    }
+}

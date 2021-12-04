@@ -1,3 +1,5 @@
+@import "../../variables.scss";
+
 .home__header__nav {
     display: none;
     @media screen and (min-width: 768px) {
@@ -48,6 +50,9 @@
                 .header__link__list {
                     transform: scale(1);
                 }
+            }
+            &.active {
+                box-shadow: 0 -2px var(--text-1) inset;
             }
         }
     }

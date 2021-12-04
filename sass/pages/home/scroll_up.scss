@@ -28,4 +28,7 @@
     &.active {
         opacity: 1;
     }
+    &:hover {
+        background: lighten($background-2-color, 10);
+    }
 }

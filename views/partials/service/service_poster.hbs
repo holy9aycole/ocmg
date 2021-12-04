@@ -1,0 +1,12 @@
+<div class="service__poster" id="poster">
+    <div class="service__poster__btns">
+        <span class="icon icon-arrow-left disabled" id="service_poster_left"></span>
+        <span class="icon icon-arrow-right" id="service_poster_right"></span>
+    </div>
+    <ul class="service__poster__list">
+        {{#each slides}}
+            <li class="service__poster__item" style="background-image: url('{{.}}')"
+                ></li>
+        {{/each}}
+    </ul>
+</div>

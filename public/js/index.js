@@ -1,8 +1,11 @@
 /* Cambiar el color de fondo del header */
 (function () {
-  const homePosterNode = document.querySelector(".home__poster");
+  const homePosterNode = document.getElementById("poster");
   const homeHeaderNode = document.querySelector(".home__header");
   const scrollUpNode = document.querySelector(".scroll__up");
+
+  /* Si el elemento homePosterNode no esta definido. Paramos */
+  if (!homePosterNode) return;
 
   /* Alto del poster menos el alto del header */
   const posterHeight = homePosterNode.offsetHeight - 48;
@@ -37,7 +40,7 @@
 
   const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
-      /* Si el titulo no esta intersectado. No hacemos nada */
+      /* Si el elemento no esta intersectado. No hacemos nada */
       if (!entry.isIntersecting) return;
       /* Cuando sea intersectado: */
       /* Añadimos la clase 'appear' al elemento */
@@ -71,7 +74,8 @@
 /* Llevar el scroll hacia arriba */
 (function () {
   const scrollUpNode = document.querySelector(".scroll__up");
-  const homePosterNode = document.querySelector(".home__poster");
+  const homePosterNode = document.getElementById("poster");
+
   scrollUpNode.addEventListener("click", () => {
     homePosterNode.scrollIntoView({ behavior: "smooth", block: "start" });
   });
@@ -119,5 +123,106 @@
   const displayMenuItems = document.querySelectorAll(".stop-propagation");
   displayMenuItems.forEach((item) => {
     item.addEventListener("click", (e) => e.stopPropagation());
+  });
+})();
+
+/* Slide en el poster de Servicio */
+(function () {
+  const arrowLeft = document.getElementById("service_poster_left");
+  const arrowRight = document.getElementById("service_poster_right");
+  const servicePosterItems = document.querySelectorAll(
+    ".service__poster__item"
+  );
+
+  /* Si los elementos arrowLeft y arrowRight no estan definidos. Paramos */
+  if (!(arrowLeft && arrowRight)) return;
+
+  arrowLeft.addEventListener("click", (e) => {
+    /* Si el boton esta deshabilitado por la clase 'disabled'. Paramos */
+    if (e.target.classList.contains("disabled")) return;
+
+    /* Nuevo desplazamiento del slide */
+    let margin = 0;
+    servicePosterItems.forEach((item) => {
+      /* Desplazamiento actual del slide */
+      let marginLeft = item.style.marginLeft;
+
+      /* valor numerico del desplazamiento */
+      const match = marginLeft.match(/\d+/);
+
+      /* Si los elementos ya tenian un desplazamiento, lo decrementamos menos
+       * 100. En caso contrario le asignamos el valor 0. */
+      margin = match ? +match[0] - 100 : 0;
+
+      /* Asignamos el desplazamiento como margin izquierdo a los elementos */
+      item.style.marginLeft = `-${margin}%`;
+    });
+
+    /* Habilitamos el boton derecho */
+    arrowRight.classList.remove("disabled");
+
+    /* Si estamos el primer Item. Deshabilitamos el boton izquierdo */
+    if (margin === 0) {
+      arrowLeft.classList.add("disabled");
+    }
+  });
+
+  arrowRight.addEventListener("click", (e) => {
+    /* Si el boton esta deshabilitado por la clase 'disabled'. Paramos */
+    if (e.target.classList.contains("disabled")) return;
+
+    /* Nuevo desplazamiento del slide */
+    let margin = 0;
+    servicePosterItems.forEach((item) => {
+      /* Desplazamiento actual del slide */
+      let marginLeft = item.style.marginLeft;
+
+      /* valor numerico del desplazamiento */
+      const match = marginLeft.match(/\d+/);
+
+      /* Si los elementos ya tenian un desplazamiento, lo incrementamos mas 100.
+       * En caso contrario le asignamos el valor 100. */
+      margin = match ? +match[0] + 100 : 100;
+
+      /* Asignamos el desplazamiento como margin izquierdo a los elementos */
+      item.style.marginLeft = `-${margin}%`;
+    });
+
+    /* Habilitamos el boton izquierdo */
+    arrowLeft.classList.remove("disabled");
+
+    /* Si llegamos en el ultimo Item. Deshabilitamos el boton derecho:
+     * 300 = 3 * 100 */
+    if (margin === (servicePosterItems.length - 1) * 100) {
+      arrowRight.classList.add("disabled");
+    }
+  });
+})();
+
+/* Hacer un efecto de opacidad a los elementos en el main en About_Us */
+(function () {
+  const options = {
+    root: null,
+    threshold: 0,
+    rootMargin: "0px 0px -250px 0px",
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      /* Si el elemento no esta intersectado. No hacemos nada */
+      if (!entry.isIntersecting) return;
+      /* Cuando sea intersectado: */
+      /* Añadimos la clase 'appear' al elemento */
+      entry.target.classList.add("appear");
+
+      /* Dejamos de observar el elemento */
+      observer.unobserve(entry.target);
+    });
+  }, options);
+
+  /* Observar todos los elementos con la clase 'opacity-in' */
+  const sliders = document.querySelectorAll(".opacity-in");
+  sliders.forEach((slider) => {
+    observer.observe(slider);
   });
 })();

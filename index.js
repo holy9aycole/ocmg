@@ -2,12 +2,15 @@ const express = require("express");
 const handlebars = require("express-handlebars");
 const http = require("http");
 const { HOST, PORT, PUBLIC_PATH } = require("./config");
-const indexController = require("./controller");
+const { pathActive, testContext } = require("./lib");
+const home = require("./controller/home");
+const service = require("./controller/service");
+const about_us = require("./controller/about_us");
 
 const app = express();
 const hbs = handlebars.create({
   extname: ".hbs",
-  helpers: {},
+  helpers: { pathActive, testContext },
 });
 
 /* Establecer el Host y el Puesto */
@@ -22,7 +25,9 @@ app.engine(".hbs", hbs.engine);
 app.use(express.static(PUBLIC_PATH));
 
 /* Manejador de rutas */
-app.use("/", indexController);
+app.use("/", home);
+app.use("/servicio", service);
+app.use("/sobre-nosotros", about_us);
 
 /* Manejador de errores */
 app.use((err, req, res, next) => {

@@ -2,7 +2,7 @@
 
 .home__footer {
     background: transparent;
-    padding: 2rem 0 0;
+    padding: 1.2rem 0 0;
     box-shadow: 0 2px var(--text-1) inset;
     @media screen and (min-width: 768px) {
         display: grid;
@@ -41,6 +41,13 @@
                 color: var(--text-2);
                 cursor: pointer;
                 font-size: $info2;
+                &.active {
+                    &::before {
+                        content: "|";
+                        margin-right: .5rem;
+                        color: var(--text-2);
+                    }
+                }
             }
         }
     }
