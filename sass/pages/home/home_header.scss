@@ -1,6 +1,7 @@
 @import "../../variables.scss";
 @import "./menu_icon.scss";
 @import "./home_header_nav.scss";
+@import "./home_header_theme.scss";
 
 .home__header {
     position: fixed;
@@ -8,18 +9,21 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 3rem;
-    padding: 1rem var(--padding);
+    height: var(--header-height);
+    padding: 0 var(--padding);
     display: flex;
+    color: var(--text-1);
     background: var(--background-1);
     transition: background .1s ease-in;
     &.active {
+        --background-1: #fff;
+        --text-1: #636d65ff;
         box-shadow: 0 1px 10px 0 rgba(#000, .2);
     }
     &.darken {
-        --background-1: #3a3a3aff;
         --text-1: #ddd;
         &.active {
+            --background-1: #3a3a3aff;
             box-shadow: 0 1px 10px 0 rgba(#ddd, .2);
         }
     }
@@ -30,20 +34,6 @@
             display: inline-block;
             font-size: $logo;
             color: var(--text-1);
-        }
-    }
-    .home__header__theme {
-        margin-left: auto;
-        display: flex;
-        align-items: center;
-        .header__theme__icon {
-            padding: 1rem;
-            color: var(--text-1);
-            font-size: $subtitle;
-            cursor: pointer;
-            &:hover {
-                box-shadow: 0 -2px var(--text-1) inset;
-            }
         }
     }
     &.darken {

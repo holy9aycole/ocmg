@@ -2,15 +2,8 @@
 
 .home__poster {
     position: relative;
-    height: 20rem;
+    height: 25rem;
     padding: 3rem var(--padding) 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-image: url(/img/poster);
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
     @media screen and (min-width: 768px) {
         height: 25rem;
     }
@@ -20,24 +13,219 @@
     @media screen and (min-width: 1200px) {
         height: 100vh;
     }
-    .home__poster__title {
-        width: 100%;
-        margin-bottom: 1rem;
-        color: #fff;
-        font-weight: 500;
-        font-size: $title;
-    }
-    .home__poster__text {
-        margin-bottom: 2rem;
-        width: 100%;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 3;
+    .home__poster__list {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: #3a3a3aff;
         overflow: hidden;
-        color: #fff;
-        font-size: $normal;
+        input {
+            display: none;
+            &:checked + .home__poster__item {
+                animation: zoom-in 18s linear forwards;
+                @keyframes zoom-in {
+                    0% {
+                        opacity: 0;
+                        transform: scale(1);
+                        animation-timing-function: ease-in;
+                    }
+                    25% {
+                        opacity: .5;
+                    }
+                    100% {
+                        transform: scale(1.2);
+                        opacity: .8;
+                        animation-timing-function: ease-out;
+                    }
+                }
+            }
+        }
+        .home__poster__item {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            animation: zoom-out 2s linear forwards;
+            @keyframes zoom-out {
+                0% {
+                    opacity: .5;
+                    transform: scale(1.2);
+                    animation-timing-function: ease-out;
+                }
+                100% {
+                    transform: scale(1);
+                    opacity: 0;
+                    animation-timing-function: linear;
+                }
+            }
+            &.img1 {
+                background-image: url(/img/inmobiliaria/inmobiliaria-1);
+            }
+            &.img2 {
+                background-image: url(/img/inmobiliaria/inmobiliaria-2);
+            }
+            &.img3 {
+                background-image: url(/img/inmobiliaria/inmobiliaria-3);
+            }
+        }
     }
-    .home__poster__button {
-        width: max-content;
+    .home__poster__inputs {
+        $width: 2rem; /* Tamaño de cada circulo */
+        position: absolute;
+        z-index: 10000; // 10.000
+        bottom: 1rem;
+        left: 50%;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: repeat(3, $width);
+        align-items: center;
+        justify-content: center;
+        grid-gap: 4rem;
+        transform: translateX(-50%);
+        &::before {
+            content: "";
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: var(--background-0);
+        }
+        input {
+            display: none;
+            &:checked + .home__poster__circle::after {
+                background: lighten($background-2-color, 15);
+                opacity: 1;
+            }
+        }
+        .home__poster__circle {
+            position: relative;
+            width: $width;
+            height: $width;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--background-0);
+            cursor: pointer;
+            &::after {
+                content: "";
+                position: absolute;
+                width: $width / 2;
+                height: $width / 2;
+                border-radius: 50%;
+                opacity: 0;
+                transition: background .4s ease-in, opacity 1s ease-in;
+            }
+            &:hover::after {
+                @media screen and (min-width: 768px) {
+                    opacity: 1;
+                    transition: none;
+                    background: lighten($background-2-color, 5);
+                }
+            }
+        }
+    }
+    .home__poster__infos {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        input {
+            display: none;
+            &:checked + .home__poster__info {
+                animation: info-slide-in 19s ease-in forwards;
+                @keyframes info-slide-in {
+                    0% {
+                        opacity: 0;
+                        transform: translateY(-2rem);
+                        animation-timing-function: ease-in;
+                    }
+                    25% {
+                        opacity: .8;
+                        transform: translateY(0);
+                    }
+                    100% {
+                        opacity: 1;
+                        animation-timing-function: ease-out;
+                    }
+                }
+            }
+        }
+        .home__poster__info {
+            position: absolute;
+            padding: 0 var(--padding);
+            opacity: 0;
+            animation: info-slide-out 1s ease-out forwards;
+            @keyframes info-slide-out {
+                0% {
+                    opacity: 1;
+                    transform: translateY(0);
+                    animation-timing-function: ease-out;
+                }
+                50% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 0;
+                    transform: translateY(-2rem);
+                    animation-timing-function: linear;
+                }
+            }
+            .home__poster__title {
+                width: 100%;
+                margin-bottom: 1rem;
+                color: #fff;
+                font-weight: 500;
+                font-size: $title;
+            }
+            .home__poster__text {
+                margin-bottom: 2rem;
+                width: 100%;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 3;
+                overflow: hidden;
+                color: #fff;
+                font-size: $normal;
+            }
+            .home__poster__button {
+                width: max-content;
+                // &::before {
+                    // animation: btn-slide-out 19.5s ease-in infinite forwards;
+                    // @keyframes btn-slide-out {
+                        // 0% {
+                            // transform: translateX(0);
+                            // opacity: 0;
+                        // }
+                        // 25% {
+                            // opacity: 1;
+                            // transform: translateX(0);
+                        // }
+                        /* Este porcentaje se haya dividiendo la 50 / duracion
+                         50 - (.5 <tiempo para hacer el slide> * 100 (porcentaje)) */
+                        // 27.17% {
+                            // transform: translateX(100%);
+                            // opacity: 1;
+                        // }
+                        // 100% {
+                            // transform: translateX(100%);
+                        // }
+                    // }
+                // }
+                // &:hover::before {
+                    // animation: btn-slide-in .5s ease-in forwards;
+                // }
+            }
+        }
     }
 }

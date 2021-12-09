@@ -7,13 +7,9 @@
   /* Si el elemento homePosterNode no esta definido. Paramos */
   if (!homePosterNode) return;
 
-  /* Alto del poster menos el alto del header */
-  const posterHeight = homePosterNode.offsetHeight - 48;
-
   const options = {
     root: null,
     threshold: 1,
-    rootMargin: `${posterHeight}px 0px 0px 0px`,
   };
 
   const observer = new IntersectionObserver((entries) => {
@@ -28,6 +24,74 @@
     });
   }, options);
   observer.observe(homePosterNode);
+})();
+
+/* Slide del poster */
+(function () {
+  /* Intervalo de espera 25s */
+  const timeout = 25000;
+
+  /* Valor de retorno de setInterval */
+  let interval;
+
+  /* Inputs en el poster para cambiar de imagen o item */
+  const posterInputNodes = Array.from(
+    document.getElementsByName("poster_input")
+  );
+
+  /* Input que acompaña a cada item en el listado items */
+  const posterItemInputNodes = Array.from(
+    document.getElementsByName("poster_item_input")
+  );
+
+  /* Input que acompaña a cada info en el listado de infos */
+  const posterInfoInputNodes = Array.from(
+    document.getElementsByName("poster_info_input")
+  );
+
+  /* Cambiar de input activo */
+  const changeActiveInput = () => {
+    /* Tomamos el input activo */
+    const activeInput = posterInputNodes.find((node) => node.checked);
+    /* Tomamos el indice del input activo que aparece en la propiedad index */
+    const activeIndex = +activeInput.getAttribute("index");
+
+    if (activeIndex === posterInputNodes.length - 1) {
+      /* Si es el ultimo indice o input. Empezamos desde el principio */
+      posterInputNodes[0].checked = true;
+      /* Activamos el primer input del listado de items */
+      posterItemInputNodes[0].checked = true;
+      /* Activamos el primer input del listado de infos */
+      posterInfoInputNodes[0].checked = true;
+    } else {
+      /* En caso contrario. Continuamos con el siguiente input */
+      posterInputNodes[activeIndex + 1].checked = true;
+      /* Activamos el input del listado de items correspondiente al indice
+       * del input activado  */
+      posterItemInputNodes[activeIndex + 1].checked = true;
+      /* Activamos el input del listado de infos correspondiente al indice
+       * del input activado */
+      posterInfoInputNodes[activeIndex + 1].checked = true;
+    }
+  };
+
+  /* Temporizador de 5s para cambiar de input activo */
+  interval = setInterval(() => changeActiveInput(), timeout);
+
+  /* Cuando se cambie de input activo haciendo click sobre el cambiamos el
+   * input del listado de item activo tambien */
+  posterInputNodes.forEach((node, index) => {
+    node.addEventListener("change", (e) => {
+      if (!e.target.checked) return;
+      posterItemInputNodes[index].checked = true;
+      posterInfoInputNodes[index].checked = true;
+
+      /* Deshacemos el Temporizador */
+      clearInterval(interval);
+      /* Inicalizamos de nuevo el Temporizador */
+      interval = setInterval(() => changeActiveInput(), timeout);
+    });
+  });
 })();
 
 /* Hacer un efecto de slide a los elementos en el main */
@@ -60,14 +124,21 @@
 
 /* Cambiar de Tema */
 (function () {
-  const themeNode = document.querySelector(".home__header__theme");
+  const themeInputNode = document.getElementById("theme_input");
   const documentBody = document.getElementById("document_body");
   const headerNode = documentBody.querySelector(".home__header");
-  themeNode.addEventListener("click", () => {
-    documentBody.classList.toggle("darken");
-    /* Añadimos la clase 'darken' al Header para que se le apliquen los
-     * estilos del cambio de tema */
-    headerNode.classList.toggle("darken");
+
+  themeInputNode.addEventListener("change", (e) => {
+    /* Aplicamos el efecto de cambio de tema directamente al Header */
+    if (e.target.checked) {
+      /* Tema Claro */
+      documentBody.classList.remove("darken");
+      headerNode.classList.remove("darken");
+    } else {
+      /* Tema Oscuro */
+      documentBody.classList.add("darken");
+      headerNode.classList.add("darken");
+    }
   });
 })();
 
@@ -92,15 +163,22 @@
 
   menuIconNode.addEventListener("click", (e) => {
     e.stopPropagation();
-    /* Mostrar el menu deplegable */
-    displayMenuNode.classList.add("active");
-    /* Hacer el document statico, es decir, que no haga scroll mientras el
-     * menu desplegable este activo */
-    displayMenuNode.classList.add("active");
-    document.documentElement.style.overflow = "hidden";
+    if (displayMenuNode.classList.contains("active")) {
+      /* Ocultar el menu deplegable */
+      displayMenuNode.classList.remove("active");
+      /* Dejar el document como estaba */
+      document.documentElement.style.overflow = "initial";
+    } else {
+      /* Mostrar el menu deplegable */
+      displayMenuNode.classList.add("active");
+      /* Hacer el document statico, es decir, que no haga scroll mientras el
+       * menu desplegable este activo */
+      displayMenuNode.classList.add("active");
+      document.documentElement.style.overflow = "hidden";
+    }
   });
 
-  /* Ocular el menu desplegable al hacer click sobre el cuerpo de al pagina */
+  /* Ocultar el menu desplegable al hacer click sobre el cuerpo de al pagina */
   documentBody.addEventListener("click", () => {
     displayMenuNode.classList;
     if (!displayMenuNode.classList.contains("active")) return;
@@ -109,13 +187,13 @@
     document.documentElement.style.overflow = "initial";
   });
 
-  /* Ocultar el menu desplegable al hacer click sobre el icono 'x' */
-  const displayMenuExitNode = document.querySelector(".display__menu__exit");
-  displayMenuExitNode.addEventListener("click", () => {
+  /* Ocultar el munu desplegable automaticamente al redimensionar el navegador */
+  window.onresize = () => {
+    if (window.innerWidth < 768) return;
     displayMenuNode.classList.remove("active");
     /* Dejar el document como estaba */
     document.documentElement.style.overflow = "initial";
-  });
+  };
 
   /* Evitar que al hacer click sobre los elementos en el menu desplegable que
    * tengan la clase 'stop-propagation' el evento se propague hasta document

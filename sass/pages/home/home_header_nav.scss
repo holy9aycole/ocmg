@@ -15,13 +15,35 @@
         .home__header__link {
             position: relative;
             z-index: 10000;
+            height: 100%;
             display: flex;
             justify-content: center;
-            padding: 1rem;
+            align-items: center;
             margin: 0 .5rem;
+            padding: 1rem .5rem;
             color: var(--text-1);
-            font-size: $normal;
+            font-size: $info2 + .02rem;
             cursor: pointer;
+            @media screen and (min-width: 1024px) {
+                padding: 1rem;
+            }
+            /* Para estrechar o comprimir la linea */
+            &::before {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                height: 2px;
+                background: var(--text-1);
+                animation: link-slide-out .25s ease-in forwards;
+            }
+            @keyframes link-slide-out {
+                0% {
+                    width: 100%;
+                }
+                100% {
+                    width: 0;
+                }
+            }
             .header__link__list {
                 position: absolute;
                 z-index: 100000;
@@ -29,30 +51,61 @@
                 padding: 1rem;
                 min-width: auto;
                 transform: scale(0);
-                transition: transform .1s ease;
+                opacity: 0;
+                transition: transform .2s ease-in, opacity .3s ease-in;
                 box-shadow: 0 0 10px 1px rgba(#000, .2);
-                background: var(--background-1);
+                background: var(--background-0);
                 .header__link__item a {
+                    position: relative;
                     display: inline-block;
                     width: 100%;
                     white-space: nowrap;
                     padding: .5rem;
                     font-size: $info2;
-                    color: var(--text-1);
+                    color: var(--text-2);
                     &:hover {
-                        color: var(--background-1);
-                        background: var(--text-1);
+                        color: var(--background-0);
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            z-index: -1;
+                            top: 0;
+                            bottom: 0;
+                            left: 0;
+                            right: 0;
+                            background: var(--text-1);
+                            animation: item-slide .25s ease-in forwards;
+                            @keyframes item-slide {
+                                0% {
+                                    width: 0;
+                                }
+                                100% {
+                                    width: 100%;
+                                }
+                            }
+                        }
                     }
                 }
             }
-            &:hover {
-                box-shadow: 0 -2px var(--text-1) inset;
+            &:hover, &.active {
+                /* Se ha usado before porque el after ya esta tomado en el
+                 triangulito de servicio */
+                &::before {
+                    /* Para expandir la linea */
+                    animation: link-slide-in .25s ease-in forwards;
+                    @keyframes link-slide-in {
+                        0% {
+                            width: 0;
+                        }
+                        100% {
+                            width: 100%;
+                        }
+                    }
+                }
                 .header__link__list {
                     transform: scale(1);
+                    opacity: 1;
                 }
-            }
-            &.active {
-                box-shadow: 0 -2px var(--text-1) inset;
             }
         }
     }

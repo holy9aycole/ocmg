@@ -12,13 +12,46 @@
 }
 
 .btn-1 {
+    position: relative;
+    z-index: 100;
     border: 1px solid #ccc;
-    border-radius: 2rem;
+    border-radius: .2rem;
     padding: .8rem;
     font-size: $normal;
     background: transparent;
-    &:hover {
+    transition: border .3s ease-in;
+    overflow: hidden;
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
         background: $background-2-color;
+        animation: btn-slide-out .5s ease-in forwards;
+        @keyframes btn-slide-out {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+    }
+    &:hover {
+        border-color: $background-2-color;
+        &::before {
+            animation: btn-slide-in .5s ease-in forwards;
+            @keyframes btn-slide-in {
+                0% {
+                    width: 0;
+                }
+                100% {
+                    width: 100%;
+                }
+            }
+        }
     }
 }
 
@@ -30,5 +63,25 @@
     background: $background-2-color;
     &:hover {
         background: lighten($background-2-color, 10);
+    }
+}
+
+/* Triangulito */
+.add-arrow {
+    &::after {
+        $border: .3rem;
+        content: "";
+        width: 0;
+        height: 0;
+        border-top: $border solid var(--text-1);
+        border-left: $border solid transparent;
+        border-right: $border solid transparent;
+        margin: .4rem .2rem 0;
+        transition: all .2s;
+    }
+    &:hover {
+        &::after {
+            transform: rotate(180deg);
+        }
     }
 }

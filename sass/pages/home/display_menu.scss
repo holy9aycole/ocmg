@@ -2,14 +2,18 @@
 
 .display__menu {
     position: fixed;
-    z-index: 10000000000;
+    z-index: 100000; // 100.000
     top: 0;
     left: -100%;
     bottom: 0;
     width: 90%;
+    margin-top: var(--header-height);
     background: var(--background-0);
     transition: left .3s ease-in;
-    box-shadow: 1px 0 10px 0 var(--text-1);
+    box-shadow: 1px 0 5px 0 var(--text-1);
+    @media screen and (min-width: 768px) {
+        display: none;
+    }
     &.active {
         left: 0;
     }

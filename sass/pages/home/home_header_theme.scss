@@ -1,0 +1,44 @@
+@import "../../variables.scss";
+
+.home__header__theme {
+    /* Vars: alto y ancho del boton de tema */
+    $width: 2.8rem;
+    $height: .92rem;
+
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    .header__theme__input {
+        display: none;
+    }
+    .header__theme__icon {
+        width: $width;
+        height: $height;
+        display: flex;
+        align-items: center;
+        border-radius: 2rem;
+        background: lighten($background-2-color, 15);
+        cursor: pointer;
+        &:hover::after {
+            box-shadow: 0 0 3px 3px lighten($background-2-color, 15) inset;
+        }
+        &::after {
+            content: "";
+            position: relative;
+            left: 0;
+            display: block;
+            width: $width / 1.7;
+            height: $width / 1.7;
+            border-radius: 50%;
+            transition: all .3s ease-in;
+            /* Color Oscuro (tema oscuro) */
+            background: var(--background-0);
+            box-shadow: 0 0 1px 1px $background-2-color inset;
+        }
+    }
+    .header__theme__input:checked + .header__theme__icon::after {
+        left: $width / 2;
+        /* Color Claro (tema claro) */
+        background: #fff;
+    }
+}
