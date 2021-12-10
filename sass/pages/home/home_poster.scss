@@ -2,7 +2,7 @@
 
 .home__poster {
     position: relative;
-    height: 25rem;
+    height: 27rem;
     padding: 3rem var(--padding) 1rem;
     @media screen and (min-width: 768px) {
         height: 25rem;
@@ -13,7 +13,9 @@
     @media screen and (min-width: 1200px) {
         height: 100vh;
     }
+    background-color: rgba(#000, .2);
     .home__poster__list {
+        $color: #3a3a3aff;
         position: absolute;
         z-index: -1;
         top: 0;
@@ -37,7 +39,7 @@
                     }
                     100% {
                         transform: scale(1.2);
-                        opacity: .8;
+                        opacity: .7;
                         animation-timing-function: ease-out;
                     }
                 }
@@ -138,7 +140,6 @@
         right: 0;
         display: flex;
         flex-direction: column;
-        align-items: center;
         justify-content: center;
         input {
             display: none;
@@ -150,7 +151,7 @@
                         transform: translateY(-2rem);
                         animation-timing-function: ease-in;
                     }
-                    25% {
+                    10% {
                         opacity: .8;
                         transform: translateY(0);
                     }
@@ -186,7 +187,7 @@
                 margin-bottom: 1rem;
                 color: #fff;
                 font-weight: 500;
-                font-size: $title;
+                font-size: $title + .5rem;
             }
             .home__poster__text {
                 margin-bottom: 2rem;
@@ -200,31 +201,6 @@
             }
             .home__poster__button {
                 width: max-content;
-                // &::before {
-                    // animation: btn-slide-out 19.5s ease-in infinite forwards;
-                    // @keyframes btn-slide-out {
-                        // 0% {
-                            // transform: translateX(0);
-                            // opacity: 0;
-                        // }
-                        // 25% {
-                            // opacity: 1;
-                            // transform: translateX(0);
-                        // }
-                        /* Este porcentaje se haya dividiendo la 50 / duracion
-                         50 - (.5 <tiempo para hacer el slide> * 100 (porcentaje)) */
-                        // 27.17% {
-                            // transform: translateX(100%);
-                            // opacity: 1;
-                        // }
-                        // 100% {
-                            // transform: translateX(100%);
-                        // }
-                    // }
-                // }
-                // &:hover::before {
-                    // animation: btn-slide-in .5s ease-in forwards;
-                // }
             }
         }
     }

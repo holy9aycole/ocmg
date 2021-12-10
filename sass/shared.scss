@@ -13,7 +13,6 @@
 
 .btn-1 {
     position: relative;
-    z-index: 100;
     border: 1px solid #ccc;
     border-radius: .2rem;
     padding: .8rem;
@@ -24,6 +23,7 @@
     &::before {
         content: "";
         position: absolute;
+        z-index: -1;
         top: 0;
         bottom: 0;
         left: 0;
@@ -40,8 +40,8 @@
         }
     }
     &:hover {
-        border-color: $background-2-color;
         &::before {
+            background: $background-2-color;
             animation: btn-slide-in .5s ease-in forwards;
             @keyframes btn-slide-in {
                 0% {

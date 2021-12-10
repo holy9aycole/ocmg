@@ -160,44 +160,102 @@
   const displayMenuNode = document.querySelector(".display__menu");
   /* Body de la pagina */
   const documentBody = document.getElementById("document_body");
+  /* Items del menu desplegable a aplicar el efecto de acordeon */
+  const displayMenuAcordeonNode = document.querySelectorAll(".menu_acordeon");
 
-  menuIconNode.addEventListener("click", (e) => {
-    e.stopPropagation();
-    if (displayMenuNode.classList.contains("active")) {
-      /* Ocultar el menu deplegable */
-      displayMenuNode.classList.remove("active");
-      /* Dejar el document como estaba */
-      document.documentElement.style.overflow = "initial";
-    } else {
-      /* Mostrar el menu deplegable */
-      displayMenuNode.classList.add("active");
-      /* Hacer el document statico, es decir, que no haga scroll mientras el
-       * menu desplegable este activo */
-      displayMenuNode.classList.add("active");
-      document.documentElement.style.overflow = "hidden";
-    }
-  });
-
-  /* Ocultar el menu desplegable al hacer click sobre el cuerpo de al pagina */
-  documentBody.addEventListener("click", () => {
-    displayMenuNode.classList;
-    if (!displayMenuNode.classList.contains("active")) return;
-    displayMenuNode.classList.remove("active");
-    /* Dejar el document como estaba */
-    document.documentElement.style.overflow = "initial";
-  });
-
-  /* Ocultar el munu desplegable automaticamente al redimensionar el navegador */
-  window.onresize = () => {
-    if (window.innerWidth < 768) return;
+  /*
+   * hideDisplayMenu -- Funcion que oculta el menu desplegable
+   * */
+  const hideDisplayMenu = () => {
     displayMenuNode.classList.remove("active");
     /* Dejar el document como estaba */
     document.documentElement.style.overflow = "initial";
   };
 
-  /* Evitar que al hacer click sobre los elementos en el menu desplegable que
-   * tengan la clase 'stop-propagation' el evento se propague hasta document
-   * y éste oculte el menu desplegable */
+  /*
+   * showDisplayMenu -- Funcion que muestra el menu desplegable
+   */
+  const showDisplayMenu = () => {
+    displayMenuNode.classList.add("active");
+    /* Hacer el document statico, es decir, que no haga scroll mientras el
+     * menu desplegable este activo */
+    document.documentElement.style.overflow = "hidden";
+  };
+
+  displayMenuAcordeonNode.forEach((node) => {
+    /* Link del item  */
+    const acordeonHeader = node.querySelector(
+      ".menu_acordeon .display__menu__link"
+    );
+    acordeonHeader.addEventListener("click", (e) => {
+      e.preventDefault();
+      /* Item activo actualmente */
+      const activeItem = document.querySelector(".menu_acordeon.active");
+
+      /* Aplicamos el efecto slide vertical al elemento  */
+      toogleItem(node);
+
+      /* Cada vez que hacemos click sobre un item para desplegar su contenido,
+       * ocultamos el otro item activo.*/
+      if (activeItem && activeItem !== node) toogleItem(activeItem);
+    });
+  });
+
+  /*
+   * toggleItem -- Funcion que crea el efecto de slide vertical (acordeon).
+   * @param item -- elemento a aplicar el efecto.
+   */
+  const toogleItem = (item) => {
+    /* Lista dentro del item a desplegar con el efecto de slide vertical */
+    const displayMenuList = item.querySelector(".display__menu__options");
+
+    if (item.classList.contains("active")) {
+      /* Si al elemento ya se le ha aplicado el efecto. Lo deshacemos.  */
+
+      /* Comprimimos de nuevo la lista removiendo los estilos en linea
+       * aplicados. */
+      displayMenuList.removeAttribute("style");
+      /* Desactivamos al elemento. */
+      item.classList.remove("active");
+    } else {
+      /* En caso contrario. Le aplicamos el efecto */
+
+      /* Expadimos la lista. El valor de scrollHeight es el alto real de la
+       * lista aun cuando este comprimido (height = 0)  */
+      displayMenuList.style.height = displayMenuList.scrollHeight + "px";
+      /* Activamos al elemento */
+      item.classList.add("active");
+    }
+  };
+
+  menuIconNode.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (displayMenuNode.classList.contains("active")) {
+      hideDisplayMenu();
+    } else {
+      showDisplayMenu();
+    }
+  });
+
+  /* Ocultar el menu desplegable al hacer click sobre el cuerpo de la pagina */
+  documentBody.addEventListener("click", () => {
+    displayMenuNode.classList;
+    if (!displayMenuNode.classList.contains("active")) return;
+    hideDisplayMenu();
+  });
+
+  /* Ocultar el menu cada vez que en la URL haya cambiado el hash */
+  window.onhashchange = () => hideDisplayMenu();
+
+  /* Ocultar el munu desplegable automaticamente al redimensionar el navegador */
+  window.onresize = () => {
+    if (window.innerWidth < 768) return;
+    hideDisplayMenu();
+  };
+
+  /* Evitar que al hacer click sobre los elementos  que tengan la clase
+   * 'stop-propagation' el evento se propague hasta document y éste oculte
+   * el menu desplegable */
   const displayMenuItems = document.querySelectorAll(".stop-propagation");
   displayMenuItems.forEach((item) => {
     item.addEventListener("click", (e) => e.stopPropagation());

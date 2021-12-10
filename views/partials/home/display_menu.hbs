@@ -1,45 +1,45 @@
-<div class="display__menu">
-    <div class="display__menu__container">
-        <ul class="display__menu__list">
-            <li class="display__menu__item">
-                <a href="/#"
-                   class="display__menu__link {{pathActive currentPath true '/'}}">Inicio</a>
-                <div class="display__menu__link stop-propagation">
-                    Servicios
-                    <ul class="menu__link__list">
-                        <li class="menu__link__item">
-                            <a href="/servicio/inmobiliaria"
-                               class="{{pathActive currentPath true '/servicio/inmobiliaria'}}"
-                               >Inmobiliaria</a>
-                        </li>
-                        <li class="menu__link__item">
-                            <a href="/servicio/medico"
-                               class="{{pathActive currentPath true '/servicio/medico'}}"
-                               >Médico</a>
-                        </li>
-                        <li class="menu__link__item">
-                            <a href="/servicio/turismo"
-                               class="{{pathActive currentPath true '/servicio/turismo'}}"
-                               >Turismo</a>
-                        </li>
-                        <li class="menu__link__item">
-                            <a href="/servicio/logistica-y-aduanas"
-                               class="{{pathActive currentPath true '/servicio/logistica-y-aduanas'}}"
-                               >Logística y Aduanas
-                            </a>
-                        </li>
-                        <li class="menu__link__item">
-                            <a href="/servicio/gestoria"
-                               class="{{pathActive currentPath true '/servicio/gestorias'}}"
-                               >Gestorías</a>
-                        </li>
-                    </ul>
-                </div>
-                <a href="/sobre-nosotros"
-                   class="display__menu__link stop-propagation {{pathActive currentPath true '/sobre-nosotros'}}">
-                    Sobre nosotros
-                </a>
-            </li>
-        </ul>
-    </div>
+<div class="display__menu stop-propagation">
+    <ul class="display__menu__list stop-propagation">
+        <li class="display__menu__item">
+            <a href="/#"
+               class="display__menu__link icon-home {{pathActive currentPath true '/'}}">
+                Inicio
+            </a>
+        </li>
+        <li class="display__menu__item stop-propagation menu_acordeon">
+            <a href="/#servicios"
+               class="display__menu__link icon-service add-arrow">
+                Servicios
+            </a>
+            <ul class="display__menu__options">
+                <li class="display__menu__option">
+                    <a href="/#servicio_inmobiliaria">Inmobiliaria</a>
+                </li>
+                <li class="display__menu__option">
+                    <a href="/#servicio_medico">Médico</a>
+                </li>
+                <li class="display__menu__option">
+                    <a href="/#servicio_turismo">Turismo</a>
+                </li>
+                <li class="display__menu__option">
+                    <a href="/#servicio_logistica-y-aduanas">Logística y Aduanas</a>
+                </li>
+                <li class="display__menu__option">
+                    <a href="/#servicio_gestoria">Gestorías</a>
+                </li>
+            </ul>
+        </li>
+        <li class="display__menu__item">
+            <a href="/#sobre-nosotros"
+               class="display__menu__link icon-about_us">
+                Sobre nosotros
+            </a>
+        </li>
+        <li class="display__menu__item">
+            <a href="/#contacto"
+               class="display__menu__link icon-about_us">
+                Contacto
+            </a>
+        </li>
+    </ul>
 </div>

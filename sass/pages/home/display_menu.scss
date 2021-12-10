@@ -8,6 +8,7 @@
     bottom: 0;
     width: 90%;
     margin-top: var(--header-height);
+    padding: 1rem 0;
     background: var(--background-0);
     transition: left .3s ease-in;
     box-shadow: 1px 0 5px 0 var(--text-1);
@@ -17,68 +18,57 @@
     &.active {
         left: 0;
     }
-    .display__menu__header {
-        height: 3rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 1rem;
-        border-bottom: 1px solid var(--text-1);
-        .display__menu__exit {
-            $size: 1.8rem;
-            width: $size;
-            height: $size;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #ddd;
-            font-size: $title;
-            color: inherit;
-        }
-        .display__menu__title {
-            font-size: $logo;
-            font-weight: 400;
-            color: var(--text-2);
-        }
-    }
-    .display__menu__container {
-        padding: 1rem;
-        .display__menu__list {
-            .display__menu__item {
-                .display__menu__link {
-                    display: inline-block;
-                    width: 100%;
-                    padding: .5rem 0;
+    .display__menu__list {
+        .display__menu__item {
+            &.active .display__menu__link {
+                background: $background-2-color;
+                color: #ddd;
+                &::before {
+                    color: #ddd;
+                }
+                &::after {
+                    transform: rotate(180deg);
+                }
+            }
+            .display__menu__link {
+                position: relative;
+                display: flex;
+                align-items: flex-end;
+                width: 100%;
+                padding: .7rem 1rem;
+                color: var(--text-2);
+                font-size: $subtitle;
+                transition: background .3s ease-in;
+                &::after {
+                    transform: rotate(0);
+                }
+
+                &::before {
+                    margin-right: 1rem;
                     color: var(--text-2);
-                    font-size: $subtitle;
-                    &.active {
-                        &::before {
-                            content: "|";
-                            margin-right: .5rem;
-                            color: var(--text-2);
-                        }
+                }
+                &::after {
+                    margin-bottom: .3rem;
+                }
+            }
+            .display__menu__options {
+                padding-left: 1rem;
+                background: var(--text-2);
+                height: 0;
+                overflow: hidden;
+                transition: height .3s ease-in;
+                .display__menu__option {
+                    &:last-child a {
+                        padding-bottom: 1rem;
                     }
-                    .menu__link__list {
-                        margin-left: 1rem;
-                        margin-top: .3rem;
-                        transition: height 1s ease-in;
-                        .menu__link__item a {
-                            display: inline-block;
-                            width: 100%;
-                            padding: .3rem 0;
-                            color: var(--text-2);
-                            &.active {
-                                &::before {
-                                    content: "|";
-                                    margin-right: .5rem;
-                                    color: var(--text-2);
-                                }
-                            }
-                        }
+                    a {
+                        display: inline-block;
+                        width: 100%;
+                        padding-top: 1rem;
+                        color: var(--background-0);
                     }
                 }
             }
         }
-
     }
 }

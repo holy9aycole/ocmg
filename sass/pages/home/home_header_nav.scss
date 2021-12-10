@@ -6,6 +6,7 @@
         display: flex;
         align-items: center;
         margin-left: 2rem;
+        /* Pipe entre el Logo y la Navegacion */
         &::before {
             content: "|";
             margin-right: 2rem;
@@ -27,7 +28,7 @@
             @media screen and (min-width: 1024px) {
                 padding: 1rem;
             }
-            /* Para estrechar o comprimir la linea */
+            /* Para comprimir la linea horizontal bajo cada item */
             &::before {
                 content: "";
                 position: absolute;
@@ -35,13 +36,13 @@
                 height: 2px;
                 background: var(--text-1);
                 animation: link-slide-out .25s ease-in forwards;
-            }
-            @keyframes link-slide-out {
-                0% {
-                    width: 100%;
-                }
-                100% {
-                    width: 0;
+                @keyframes link-slide-out {
+                    0% {
+                        width: 100%;
+                    }
+                    100% {
+                        width: 0;
+                    }
                 }
             }
             .header__link__list {
@@ -57,30 +58,43 @@
                 background: var(--background-0);
                 .header__link__item a {
                     position: relative;
-                    display: inline-block;
+                    display: flex;
+                    align-items: center;
                     width: 100%;
                     white-space: nowrap;
                     padding: .5rem;
                     font-size: $info2;
                     color: var(--text-2);
+                    /* Para comprimir la linea vertical al lado de cada
+                    elemento de la lista de opciones */
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        width: 2px;
+                        background: var(--text-1);
+                        animation: item-slide-out .25s ease-in forwards;
+                        @keyframes item-slide-out {
+                            0% {
+                                height: 100%;
+                            }
+                            100% {
+                                height: 0;
+                            }
+                        }
+                    }
+
                     &:hover {
-                        color: var(--background-0);
+                        /* Para expandir la linea vertical al lado de cada
+                        elemento de la lista de opciones */
                         &::before {
-                            content: "";
-                            position: absolute;
-                            z-index: -1;
-                            top: 0;
-                            bottom: 0;
-                            left: 0;
-                            right: 0;
-                            background: var(--text-1);
-                            animation: item-slide .25s ease-in forwards;
-                            @keyframes item-slide {
+                            animation: item-slide-in .25s ease-in forwards;
+                            @keyframes item-slide-in {
                                 0% {
-                                    width: 0;
+                                    height: 0;
                                 }
                                 100% {
-                                    width: 100%;
+                                    height: 100%;
                                 }
                             }
                         }

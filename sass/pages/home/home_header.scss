@@ -14,17 +14,18 @@
     display: flex;
     color: var(--text-1);
     background: var(--background-1);
-    transition: background .1s ease-in;
+    box-shadow: 0 1px 5px 0 var(--border);
+    transition: background .3s ease-in, border .3s ease-in;
     &.active {
         --background-1: #fff;
         --text-1: #636d65ff;
-        box-shadow: 0 1px 10px 0 rgba(#000, .2);
+        --border: #9ca4a4e6;
     }
     &.darken {
         --text-1: #ddd;
         &.active {
-            --background-1: #3a3a3aff;
-            box-shadow: 0 1px 10px 0 rgba(#ddd, .2);
+            --background-1: #091717ff;
+            --border: #137272ff;
         }
     }
     .home__header__logo {

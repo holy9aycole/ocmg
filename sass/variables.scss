@@ -14,6 +14,8 @@
     // --text-1: #636d65ff;
     /* Color de texto en el Main */
     --text-2: #000000e0;
+    /* Border del header */
+    --border: transparent;
     @media screen and (min-width: 768px) {
         --padding: 5rem;
         --header-height: 4rem;
