@@ -85,3 +85,34 @@
         }
     }
 }
+
+/* Linea en forma de subrayado de texto de la forma: --- * ---- */
+.underscore {
+    position: relative;
+    $size:  .5rem;
+    $width: 7rem;   /* Ancho de cada linea */
+    $space: .5rem;  /* Espacio entre el circulo y las lineas*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: .5rem;
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    background: var(--background-2);
+    transition: all .3s ease-in;
+    &::before, &::after {
+        content: "";
+        position: absolute;
+        display: inline-block;
+        height: 2px;
+        width: $width;
+        background: var(--background-2);
+    }
+    &::before {
+        left: -($width + $space);
+    }
+    &::after {
+        right: -($width + $space);
+    }
+}

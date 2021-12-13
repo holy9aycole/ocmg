@@ -5,11 +5,17 @@
     display: flex;
     flex-direction: column;
     .service__main__title {
-        margin-bottom: 1.5rem;
-        font-weight: 500;
-        font-size: $title;
-        text-align: center;
+        padding-bottom: 2rem;
+        margin-bottom: 1rem;
         color: var(--text-2);
+        font-size: var(--title);
+        @media screen and (min-width: 768px) {
+            --title: 1.5rem;
+        }
+        &::before {
+            /* Para hacer una sobrescritura forzosa del fondo de linea */
+            background: var(--text-2) !important;
+        }
     }
     .service__main__container {
         .service__main__item {
@@ -26,4 +32,57 @@
     .home__poster__button {
         margin: 0 auto;
     }
+}
+
+
+/* Estilos compartidos con la pagina de Servicios */
+.home__main__service {
+    .main__service__title {
+        padding: .5rem var(--padding);
+        font-weight: 500;
+        font-size: var(--subtitle);
+        text-align: center;
+        color: var(--text-2);
+    }
+    .main__service__item {
+        margin-bottom: 2rem;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        @media screen and (min-width: 768px) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            grid-gap: .1rem 2rem;
+            padding: 0 var(--padding);
+        }
+        .main__service__text {
+            padding: .5rem var(--padding);
+            display: flex;
+            align-items: center;
+            text-align: center;
+            font-size: $info;
+            color: var(--text-2);
+            line-height: 1.2;
+            @media screen and (min-width: 768px) {
+                padding: .5rem;
+                text-align: initial;
+                font-size: $normal;
+            }
+        }
+        .main__service__img {
+            margin: .5rem 0;
+            height: 15rem;
+        }
+    }
+}
+
+.from-left {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+}
+
+.from-right {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
 }

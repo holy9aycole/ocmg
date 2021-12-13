@@ -1,0 +1,29 @@
+@import "../../variables.scss";
+
+.home__main__contact {
+    --text-2: #2b3232ff;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 1rem;
+    align-items: center;
+    padding: 1rem var(--padding);
+    background: darken(#eee, 10);
+    color: var(--text-2);
+    @media screen and (min-width: 768px) {
+        grid-gap: 2rem;
+    }
+    .main__contact__icon {
+        font-size: var(--subtitle);
+    }
+    .main__contact__info {
+        .main__contact__title {
+            padding-bottom: 2rem;
+            font-weight: 600;
+            font-size: $normal;
+        }
+        .main__contact__text {
+            font-size: $info2;
+            line-height: 1.2;
+        }
+    }
+}

@@ -1,0 +1,29 @@
+@import "../../variables.scss";
+
+.home__main__welcome {
+    padding: 2rem var(--padding);
+    overflow: hidden;
+    .main__welcome__info {
+        padding-bottom: 2rem;
+        transition: transform .3s ease-in;
+        .main__welcome__title {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 1.5rem;
+            font-weight: 500;
+            font-size: var(--subtitle);
+            text-align: center;
+            text-transform: uppercase;
+            grid-area: text;
+            color: var(--text-2);
+        }
+        .main__welcome__text {
+            font-size: $normal;
+            color: var(--text-2);
+            line-height: 1.2;
+            text-align: center;
+        }
+    }
+}

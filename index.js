@@ -29,6 +29,10 @@ app.use("/", home);
 app.use("/servicio", service);
 app.use("/sobre-nosotros", about_us);
 
+app.use((req, res, next) => {
+  res.send("Not Found");
+});
+
 /* Manejador de errores */
 app.use((err, req, res, next) => {
   console.log(err);

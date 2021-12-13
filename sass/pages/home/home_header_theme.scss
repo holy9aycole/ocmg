@@ -31,14 +31,11 @@
             height: $width / 1.7;
             border-radius: 50%;
             transition: all .3s ease-in;
-            /* Color Oscuro (tema oscuro) */
             background: var(--background-0);
-            box-shadow: 0 0 1px 1px $background-2-color inset;
+            box-shadow: 0 0 1px 1px lighten($background-2-color, 15) inset;
         }
     }
     .header__theme__input:checked + .header__theme__icon::after {
         left: $width / 2;
-        /* Color Claro (tema claro) */
-        background: #fff;
     }
 }

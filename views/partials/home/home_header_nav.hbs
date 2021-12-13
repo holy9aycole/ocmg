@@ -2,34 +2,47 @@
     <a href="/#" class="home__header__link {{pathActive currentPath true '/'}}">
         Inicio
     </a>
-    <div class="home__header__link add-arrow {{pathActive currentPath false '/servicio'}}">
-        Servicios
-        <ul class="header__link__list">
-            <li class="header__link__item">
-                <a href="/servicio/inmobiliaria">Inmobiliaria</a>
-            </li>
-            <li class="header__link__item">
-                <a href="/servicio/medico">Médico</a>
-            </li>
-            <li class="header__link__item">
-                <a href="/servicio/turismo">Turismo</a>
-            </li>
-            <li class="header__link__item">
-                <a href="/servicio/logistica-y-aduanas">
-                    Logística y Aduanas
-                </a>
-            </li>
-            <li class="header__link__item">
-                <a href="/servicio/gestoria">Gestorías</a>
-            </li>
-        </ul>
-    </div>
-    <a href="/contact"
-       class="home__header__link {{pathActive currentPath false '/contact'}}">
-        Contacto
-    </a>
     <a href="/sobre-nosotros"
        class="home__header__link {{pathActive currentPath false '/sobre-nosotros'}}">
         Sobre nosotros
     </a>
+    <div class="home__header__link add-arrow {{pathActive currentPath false '/servicio'}}">
+        Servicios
+        <ul class="header__link__list">
+            <li class="header__link__item">
+                <a href="/servicio/inmobiliaria"
+                   class="{{pathActive currentPath false '/servicio/inmobiliaria'}}">
+                    Inmobiliaria
+                </a>
+            </li>
+            <li class="header__link__item">
+                <a href="/servicio/medico"
+                   class="{{pathActive currentPath true '/servicio/medico'}}">
+                    Médico
+                </a>
+            </li>
+            <li class="header__link__item">
+                <a href="/servicio/turismo"
+                   class="{{pathActive currentPath true '/servicio/turismo'}}">
+                    Turismo
+                </a>
+            </li>
+            <li class="header__link__item">
+                <a href="/servicio/logistica-y-aduanas"
+                   class="{{pathActive currentPath true '/servicio/logistica'}}">
+                    Logística y Aduanas
+                </a>
+            </li>
+            <li class="header__link__item">
+                <a href="/servicio/gestoria"
+                   class="{{pathActive currentPath true '/servicio/gestoria'}}">
+                    Gestorías
+                </a>
+            </li>
+        </ul>
+    </div>
+    {{!--  <a href="/contact"  --}}
+       {{!--  class="home__header__link {{pathActive currentPath false '/contact'}}">  --}}
+        {{!--  Contacto  --}}
+    {{!--  </a>  --}}
 </nav>

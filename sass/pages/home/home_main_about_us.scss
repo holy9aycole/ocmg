@@ -1,0 +1,54 @@
+@import "../../variables.scss";
+
+.home__main__about_us {
+    padding: 2rem 0;
+    background: var(--background-2);
+    transition: background .3s;
+    &:hover {
+        .main__service__img {
+            transform: scale(1.1);
+            img {
+            transform: scale(1.1);
+            }
+        }
+    }
+    @media screen and (min-width: 768px) {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 2rem;
+        align-items: center;
+        padding: 2rem var(--padding);
+    }
+    .main__about_us__img {
+        $size: 15rem;
+        height: $size;
+        transition: transform .3s linear;
+        @media screen and (min-width: 768px) {
+            $size: 18rem;
+            height: $size;
+            border-radius: .1rem;
+            img {
+                border-radius: .1rem;
+            }
+        }
+        @media screen and (min-width: 1200px) {
+            $size: 20rem;
+            height: $size;
+        }
+    }
+    .main__about_us__info {
+        padding: 1.5rem var(--padding) 0;
+        color: var(--background-0);
+        @media screen and (min-width: 768px) {
+            padding: 0;
+        }
+        .main__about_us__title {
+            padding-bottom: 2rem;
+        }
+        .main__about_us__text {
+            line-height: 1.2;
+            font-size: $info2;
+        }
+    }
+
+}

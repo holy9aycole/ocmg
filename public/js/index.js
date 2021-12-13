@@ -1,8 +1,35 @@
+/* Ocultar los botones flotantes cuando se llegue en el Footer */
+(function () {
+  const homeFooterNode = document.querySelector(".home__footer");
+  const floatButtonNodes = document.querySelectorAll(".float__button");
+
+  const options = {
+    root: null,
+    threshold: 1,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        /* Si ya se ha llegado en el Footer con el scroll.
+         * Ocultamos los botones */
+        floatButtonNodes.forEach((node) => node.classList.remove("active"));
+      } else {
+        /* Si ya se ha salido del Footer con el scroll.
+         * Mostramos los botones */
+        floatButtonNodes.forEach((node) => node.classList.add("active"));
+      }
+    });
+  }, options);
+
+  observer.observe(homeFooterNode);
+})();
+
 /* Cambiar el color de fondo del header */
 (function () {
   const homePosterNode = document.getElementById("poster");
   const homeHeaderNode = document.querySelector(".home__header");
-  const scrollUpNode = document.querySelector(".scroll__up");
+  const floatButtonNodes = document.querySelectorAll(".float__button");
 
   /* Si el elemento homePosterNode no esta definido. Paramos */
   if (!homePosterNode) return;
@@ -16,10 +43,10 @@
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         homeHeaderNode.classList.remove("active");
-        scrollUpNode.classList.remove("active");
+        floatButtonNodes.forEach((node) => node.classList.remove("active"));
       } else {
         homeHeaderNode.classList.add("active");
-        scrollUpNode.classList.add("active");
+        floatButtonNodes.forEach((node) => node.classList.add("active"));
       }
     });
   }, options);
@@ -38,6 +65,9 @@
   const posterInputNodes = Array.from(
     document.getElementsByName("poster_input")
   );
+
+  /* Si no estamos en la pagina Home. Paramos */
+  if (!(posterInputNodes && posterInputNodes.length)) return;
 
   /* Input que acompaña a cada item en el listado items */
   const posterItemInputNodes = Array.from(
@@ -94,50 +124,32 @@
   });
 })();
 
-/* Hacer un efecto de slide a los elementos en el main */
-(function () {
-  const options = {
-    root: null,
-    threshold: 0,
-    rootMargin: "0px 0px -250px 0px",
-  };
-
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      /* Si el elemento no esta intersectado. No hacemos nada */
-      if (!entry.isIntersecting) return;
-      /* Cuando sea intersectado: */
-      /* Añadimos la clase 'appear' al elemento */
-      entry.target.classList.add("appear");
-
-      /* Dejamos de observar el elemento */
-      observer.unobserve(entry.target);
-    });
-  }, options);
-
-  /* Observar todos los elementos con la clase 'slide-in' */
-  const sliders = document.querySelectorAll(".slide-in");
-  sliders.forEach((slider) => {
-    observer.observe(slider);
-  });
-})();
-
 /* Cambiar de Tema */
 (function () {
   const themeInputNode = document.getElementById("theme_input");
   const documentBody = document.getElementById("document_body");
-  const headerNode = documentBody.querySelector(".home__header");
+  const headerNode = document.querySelector(".home__header");
+  const mainMoreInfoNodes = document.querySelectorAll(".main__more_info__item");
+  const footerCopy = document.querySelector(".home__footer__copy");
 
   themeInputNode.addEventListener("change", (e) => {
     /* Aplicamos el efecto de cambio de tema directamente al Header */
     if (e.target.checked) {
-      /* Tema Claro */
-      documentBody.classList.remove("darken");
-      headerNode.classList.remove("darken");
-    } else {
       /* Tema Oscuro */
       documentBody.classList.add("darken");
       headerNode.classList.add("darken");
+      /* Elemento de más información en el main: Nuestra Expectativa */
+      mainMoreInfoNodes[1].classList.add("darken");
+      /* Copyright en el Footer */
+      footerCopy.classList.add("darken");
+    } else {
+      /* Tema Claro */
+      documentBody.classList.remove("darken");
+      headerNode.classList.remove("darken");
+      /* Elemento de más información en el main: Nuestra Expectativa */
+      mainMoreInfoNodes[1].classList.remove("darken");
+      /* Copyright en el Footer */
+      footerCopy.classList.remove("darken");
     }
   });
 })();
@@ -287,7 +299,7 @@
       const match = marginLeft.match(/\d+/);
 
       /* Si los elementos ya tenian un desplazamiento, lo decrementamos menos
-       * 100. En caso contrario le asignamos el valor 0. */
+      100. En caso contrario le asignamos el valor 0. */
       margin = match ? +match[0] - 100 : 0;
 
       /* Asignamos el desplazamiento como margin izquierdo a los elementos */
@@ -317,7 +329,7 @@
       const match = marginLeft.match(/\d+/);
 
       /* Si los elementos ya tenian un desplazamiento, lo incrementamos mas 100.
-       * En caso contrario le asignamos el valor 100. */
+      En caso contrario le asignamos el valor 100. */
       margin = match ? +match[0] + 100 : 100;
 
       /* Asignamos el desplazamiento como margin izquierdo a los elementos */
@@ -328,37 +340,65 @@
     arrowLeft.classList.remove("disabled");
 
     /* Si llegamos en el ultimo Item. Deshabilitamos el boton derecho:
-     * 300 = 3 * 100 */
+    300 = 3 * 100 */
     if (margin === (servicePosterItems.length - 1) * 100) {
       arrowRight.classList.add("disabled");
     }
   });
 })();
 
+/* Hacer un efecto de slide a los elementos en el main */
+// (function () {
+// const options = {
+// root: null,
+// threshold: 0,
+// rootMargin: "0px 0px -250px 0px",
+// };
+
+// const observer = new IntersectionObserver((entries, observer) => {
+// entries.forEach((entry) => {
+// [> Si el elemento no esta intersectado. No hacemos nada <]
+// if (!entry.isIntersecting) return;
+// [> Cuando sea intersectado: <]
+// [> Añadimos la clase 'appear' al elemento <]
+// entry.target.classList.add("appear");
+
+// [> Dejamos de observar el elemento <]
+// observer.unobserve(entry.target);
+// });
+// }, options);
+
+// [> Observar todos los elementos con la clase 'slide-in' <]
+// const sliders = document.querySelectorAll(".slide-in");
+// sliders.forEach((slider) => {
+// observer.observe(slider);
+// });
+// })();
+
 /* Hacer un efecto de opacidad a los elementos en el main en About_Us */
-(function () {
-  const options = {
-    root: null,
-    threshold: 0,
-    rootMargin: "0px 0px -250px 0px",
-  };
+// (function () {
+// const options = {
+// root: null,
+// threshold: 0,
+// rootMargin: "0px 0px -250px 0px",
+// };
 
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      /* Si el elemento no esta intersectado. No hacemos nada */
-      if (!entry.isIntersecting) return;
-      /* Cuando sea intersectado: */
-      /* Añadimos la clase 'appear' al elemento */
-      entry.target.classList.add("appear");
+// const observer = new IntersectionObserver((entries, observer) => {
+// entries.forEach((entry) => {
+// [> Si el elemento no esta intersectado. No hacemos nada <]
+// if (!entry.isIntersecting) return;
+// [> Cuando sea intersectado: <]
+// [> Añadimos la clase 'appear' al elemento <]
+// entry.target.classList.add("appear");
 
-      /* Dejamos de observar el elemento */
-      observer.unobserve(entry.target);
-    });
-  }, options);
+// [> Dejamos de observar el elemento <]
+// observer.unobserve(entry.target);
+// });
+// }, options);
 
-  /* Observar todos los elementos con la clase 'opacity-in' */
-  const sliders = document.querySelectorAll(".opacity-in");
-  sliders.forEach((slider) => {
-    observer.observe(slider);
-  });
-})();
+// [> Observar todos los elementos con la clase 'opacity-in' <]
+// const sliders = document.querySelectorAll(".opacity-in");
+// sliders.forEach((slider) => {
+// observer.observe(slider);
+// });
+// })();

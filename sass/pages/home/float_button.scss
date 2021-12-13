@@ -1,0 +1,57 @@
+@import "../../variables.scss";
+
+.float__button {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @media screen and (min-width: 768px) {
+        bottom: 2rem;
+    }
+    @media screen and (min-width: 1024px) {
+        right: 2rem;
+    }
+    &.active {
+        .scroll__up, .whatsapp {
+            opacity: 1;
+        }
+    }
+
+    .scroll__up, .whatsapp {
+        border: 1px solid $background-2-color;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        opacity: 0;
+        background: lighten($background-2-color, 15);
+        color: #fff;
+        &:hover {
+            background: $background-2-color;
+        }
+    }
+
+    .scroll__up {
+        $scroll_up_size: 3rem;
+        width: $scroll_up_size;
+        height: $scroll_up_size;
+        margin-bottom: 1rem;
+        font-size: var(--subtitle);
+        transition: opacity .3s ease-in, background .3s ease-in;
+    }
+    .whatsapp {
+        $whatsapp_size: 4rem;
+        width: $whatsapp_size;
+        height: $whatsapp_size;
+        transition: opacity .5s ease-in, background .3s ease-in;
+        a {
+            font-size: 2rem;
+            color: inherit;
+            text-align: center;
+        }
+    }
+}
+
