@@ -40,5 +40,5 @@ app.use((err, req, res, next) => {
 });
 
 http.createServer(app).listen(app.get("PORT"), app.get("HOST"), () => {
-  console.log(`Server running on ${app.get("HOST")}:${app.get("PORT")}`);
+  console.log(`Server running at http://${app.get("HOST")}:${app.get("PORT")}`);
 });

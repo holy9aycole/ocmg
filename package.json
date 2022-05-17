@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "index.js",
   "repository": "git:github/holy9aycole/ocmg",
-  "author": "@EBoriesa",
+  "author": "@holy9aycole",
   "license": "MIT",
   "dependencies": {
     "cookie-parser": "^1.4.6",

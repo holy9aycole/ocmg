@@ -173,7 +173,7 @@
   /* Body de la pagina */
   const documentBody = document.getElementById("document_body");
   /* Items del menu desplegable a aplicar el efecto de acordeon */
-  const displayMenuAcordeonNode = document.querySelectorAll(".menu_acordeon");
+  const displayMenuAcordeonNodes = document.querySelectorAll(".menu_acordeon");
 
   /*
    * hideDisplayMenu -- Funcion que oculta el menu desplegable
@@ -194,7 +194,7 @@
     document.documentElement.style.overflow = "hidden";
   };
 
-  displayMenuAcordeonNode.forEach((node) => {
+  displayMenuAcordeonNodes.forEach((node) => {
     /* Link del item  */
     const acordeonHeader = node.querySelector(
       ".menu_acordeon .display__menu__link"
